@@ -2,25 +2,24 @@ import React, { useState } from 'react';
 import data from './data';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [text, setText] = useState([]);
-
-  // console.log(data.length);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(typeof count); => string
-    let amount = +count;
-    // console.log(typeof amount); => number
 
-    if (count <= 0) {
-      amount = 1;
+    console.log(typeof amount);
+    let count = parseInt(amount);
+    console.log(typeof count);
+
+    if (amount <= 0) {
+      count = 1;
     }
-    if (count > data.length) {
-      amount = 8;
+    if (amount > data.length) {
+      count = data.length;
     }
 
-    setText(data.slice(0, amount));
+    setText(data.slice(0, count));
   };
 
   return (
@@ -32,8 +31,8 @@ function App() {
           type='number'
           name='amount'
           id='amount'
-          value={count}
-          onChange={(e) => setCount(e.target.value)}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
         />
         <button className='btn' onClick={handleSubmit}>
           generate
